@@ -8,6 +8,7 @@ public class MainFacade {
         FileCRUD model = new FileCRUD();
         model.creatFile();
         model.updateFile();
+        model.readFile();
 
     }
 }
