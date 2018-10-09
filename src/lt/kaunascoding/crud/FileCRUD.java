@@ -81,4 +81,18 @@ public class FileCRUD {
         }
 
     }
+
+    public void deleteFile (){
+        System.out.println("Įveskite failo pavadinimą pašalinimui");
+        Scanner sc = new Scanner(System.in);
+        String fileName = sc.nextLine();
+        File file = new File(fileName);
+        if (file.exists()){
+            System.out.println("Toks failas egzistuoja, ar tikrai norite trinti y/n");
+            String pasirinkimas = sc.nextLine();
+            if (pasirinkimas.toLowerCase().equals("y")){
+            file.delete();
+            System.out.println("Failas sėkmingai ištrintas");}
+        }
+    }
 }
