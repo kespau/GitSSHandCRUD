@@ -7,12 +7,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileCRUD {
-    public void creatFile() {
-        System.out.println("Įveskite failo pavadinimą \u263A");
-        Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
-        System.out.println("Įvestas failo pavadimas: " + fileName + " \u263B");
+    private String fileName;
 
+    public void creatFile() {
+        Scanner sc = new Scanner(System.in);
         File file = new File(fileName);
         if (file.exists()) {
             System.out.println("toks failas egzizuoja |u263A");
@@ -34,26 +32,24 @@ public class FileCRUD {
     }
 
     public void updateFile() {
-        System.out.println("Įveskite failo pavadinimą");
         Scanner sc = new Scanner(System.in);
-        String failoVardas = sc.nextLine();
-        File file = new File(failoVardas);
+        File file = new File(fileName);
 
-        if (file.exists()){
+        if (file.exists()) {
             System.out.println("Toks failas egzistuoja");
             System.out.println("Iveskite teksta ir spausdinkite enter");
             System.out.println("ivedus zodi pabaiga, saugojimas bus baigtas");
             try {
-                FileWriter writer = new FileWriter(file,true);
+                FileWriter writer = new FileWriter(file, true);
                 String eilute;
-                do{
+                do {
 
                     eilute = sc.nextLine();
-                    if(!eilute.toLowerCase().equals("pabaiga")){
+                    if (!eilute.toLowerCase().equals("pabaiga")) {
                         writer.write(eilute + "\n");
                     }
 
-                }while (!eilute.toLowerCase().equals("pabaiga"));
+                } while (!eilute.toLowerCase().equals("pabaiga"));
                 writer.close();
 
             } catch (IOException e) {
@@ -62,16 +58,13 @@ public class FileCRUD {
         }
     }
 
-    public void readFile (){
-        System.out.println("Įveskite failo pavadimą");
-        Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
+    public void readFile() {
         File file = new File(fileName);
 
-        if (file.exists()){
+        if (file.exists()) {
             try {
                 Scanner fileScanner = new Scanner(file);
-                while (fileScanner.hasNext()){
+                while (fileScanner.hasNext()) {
                     System.out.println(fileScanner.nextLine());
                 }
                 fileScanner.close();
@@ -82,17 +75,23 @@ public class FileCRUD {
 
     }
 
-    public void deleteFile (){
-        System.out.println("Įveskite failo pavadinimą pašalinimui");
+    public void deleteFile() {
         Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
         File file = new File(fileName);
-        if (file.exists()){
+        if (file.exists()) {
             System.out.println("Toks failas egzistuoja, ar tikrai norite trinti y/n");
             String pasirinkimas = sc.nextLine();
-            if (pasirinkimas.toLowerCase().equals("y")){
-            file.delete();
-            System.out.println("Failas sėkmingai ištrintas");}
+            if (pasirinkimas.toLowerCase().equals("y")) {
+                file.delete();
+                System.out.println("Failas sėkmingai ištrintas");
+            }
         }
+    }
+
+    public void requestFileName() {
+        System.out.println("Įveskite failo pavadimą");
+        Scanner sc = new Scanner(System.in);
+        fileName = sc.nextLine();
+
     }
 }
